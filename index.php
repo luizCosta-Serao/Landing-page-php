@@ -41,6 +41,7 @@
         <li><a href="<?php echo INCLUDE_PATH; ?>/sobre">Sobre</a></li>
         <li><a href="<?php echo INCLUDE_PATH; ?>/servicos">Serviços</a></li>
         <li><a href="<?php echo INCLUDE_PATH; ?>/contato">Contato</a></li>
+        <li><a href="<?php echo INCLUDE_PATH; ?>/noticias">Notícias</a></li>
       </ul>
     </nav>
   </header>
@@ -53,8 +54,13 @@
       if ($url === 'sobre' || $url === 'servicos') {
         include('pages/home.php');
       } else {
-        $notFound = true;
-        include('pages/not-found.php');
+        $urlPar = explode('/', $url)[0];
+        if ($urlPar !== 'noticias') {
+          $notFound = true;
+          include('pages/not-found.php');
+        } else {
+          include('pages/noticias.php');
+        }
       }
     }
 
