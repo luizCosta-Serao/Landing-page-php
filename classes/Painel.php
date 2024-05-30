@@ -6,6 +6,23 @@
       '1' => 'Sub Administrador',
       '2' => 'Administrador'
     ];
+
+    // Gerador de slug
+    public static function generateSlug($str) {
+      $str = mb_strtolower($str);
+      $str = preg_replace('/(â|á|ã)/', 'a', $str);
+      $str = preg_replace('/(ê|é)/', 'e', $str);
+      $str = preg_replace('/(í|Í)/', 'i', $str);
+      $str = preg_replace('/(ú)/', 'u', $str);
+      $str = preg_replace('/(ó|ô|õ|Ô)/', 'o', $str);
+      $str = preg_replace('/(_|\/|!|\?|#)/', '', $str);
+      $str = preg_replace('/( )/', '-', $str);
+      $str = preg_replace('/ç/', 'c', $str);
+      $str = preg_replace('/(-[-]{1,})/', '-', $str);
+      $str = preg_replace('/(,)/', '-', $str);
+      $str = strtolower($str);
+      return $str;
+    }
     
     public static function logado() {
       return isset($_SESSION['login']) ? true : false;
@@ -231,6 +248,37 @@
       return $certo;
     }
 
+      // Atualizar registro da tabela site_categorias
+    public static function updateCategoria($arr) {
+      $certo = true;
+      $nome_tabela = $arr['nome_tabela'];
+
+      $id = $arr['id'];
+      $nome = $arr['nome'];
+      $slug = $arr['slug'];
+      
+      $sql = MySql::conectar()->prepare("UPDATE `$nome_tabela` SET nome = ?, slug = ? WHERE id = ?");
+      $sql->execute(array($nome,$slug,$id));
+  
+      return $certo;
+    }
+
+    public static function updateNoticia($arr) {
+      $certo = true;
+      $nome_tabela = $arr['nome_tabela'];
+  
+      $titulo = $arr['titulo'];
+      $conteudo = $arr['conteudo'];
+      $capa = $arr['capa'];
+      $slug = $arr['slug'];
+      $id = $arr['id'];
+      $categoria_id = $arr['categoria_id'];
+      
+      $sql = MySql::conectar()->prepare("UPDATE `$nome_tabela` SET categoria_id = ?, titulo = ?, conteudo = ?, capa = ? , slug = ? WHERE id = ?");
+      $sql->execute(array($categoria_id,$titulo,$conteudo,$capa,$slug,$id));
+  
+      return $certo;
+    }
   }
 
 ?>
