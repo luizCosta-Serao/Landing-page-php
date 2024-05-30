@@ -64,7 +64,7 @@
 
     <div class="form-group">
       <label for="conteudo">Conteúdo da Notícia:</label>
-      <textarea name="conteudo">
+      <textarea class="tinymce" name="conteudo">
         <?php recoverPost('conteudo') ?>
       </textarea>
     </div>
