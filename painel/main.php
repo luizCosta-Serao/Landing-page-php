@@ -54,6 +54,11 @@
           <a <?php selecionadoMenu('adicionar-usuario') ?> <?php verificaPermissaoMenu(2); ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>/adicionar-usuario">Adicionar Usuários</a>
           <h2>Configuração Geral</h2>
           <a <?php selecionadoMenu('editar-site') ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>/editar-site">Editar Site</a>
+          <h2>Gestão de Notícias</h2>
+          <a <?php selecionadoMenu('cadastrar-categoria') ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>/cadastrar-categoria">Cadastrar Categoria</a>
+          <a <?php selecionadoMenu('gerenciar-categorias') ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>/gerenciar-categorias">Gerenciar Categorias</a>
+          <a <?php selecionadoMenu('cadastrar-noticia') ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>/cadastrar-noticia">Cadastrar Notícia</a>
+          <a <?php selecionadoMenu('gerenciar-noticias') ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>/gerenciar-noticias">Gerenciar Notícias</a>
       </div>
     </aside>
     <header>
