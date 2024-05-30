@@ -84,5 +84,11 @@
 
   <script src="<?php echo INCLUDE_PATH ?>/js/jquery-3.7.1.min.js"></script>
   <script src="<?php echo INCLUDE_PATH_PAINEL ?>/js/main.js"></script>
+  <script src="https://cdn.tiny.cloud/1/cvnfahyqwz8cs4s7qw7xq9acww5e6d0q91mxr3tejosprng4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '.tinymce',
+    });
+  </script>
 </body>
 </html>
