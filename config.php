@@ -12,16 +12,17 @@
 
   spl_autoload_register($autoload);
 
-  define('INCLUDE_PATH', 'http://localhost/desenv_web/site_dinamico');
+  define('INCLUDE_PATH', 'http://sistemas.dankicode.com/');
   define('INCLUDE_PATH_PAINEL', INCLUDE_PATH.'/painel');
 
   define('BASE_DIR_PAINEL',__DIR__.`/painel`);
 
   // Conectar com o banco de dados
+  // E CONFIGURAR O HOST, USER E PASSWORD
   define('HOST','localhost');
   define('USER','root');
   define('PASSWORD','');
-  define('DATABASE', 'projeto_1');
+  define('DATABASE', 'dankicode_sistemas');
 
   // Constantes para o painel de controle
   define('NOME_EMPRESA','Coding');

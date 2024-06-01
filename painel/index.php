@@ -1,5 +1,5 @@
 <?php
-
+  ob_start();
   include('../config.php');
 
   if (Painel::logado() === false) {
@@ -7,5 +7,6 @@
   } else {
     include('main.php');
   }
+  ob_end_flush();
 
 ?>

@@ -23,6 +23,7 @@
               $slug = Painel::generateSlug($titulo);
               $arr = [
                 'categoria_id' => $categoria_id,
+                'data' => date('Y-m-d'),
                 'titulo' => $titulo,
                 'conteudo' => $conteudo,
                 'capa' => $imagem,
