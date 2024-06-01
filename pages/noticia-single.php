@@ -1,18 +1,29 @@
+<?php
+  $url = explode('/',$_GET['url']);
+  $verificaCategoria = MySql::conectar()->prepare("SELECT * FROM `site_categorias` WHERE slug = ?");
+  $verificaCategoria->execute(array($url[1]));
+  if ($verificaCategoria->rowCount() == 0) {
+    Painel::redirect(INCLUDE_PATH.'/noticias');
+  } else {
+    $categoria_info = $verificaCategoria->fetch();
+    $post = MySql::conectar()->prepare("SELECT * FROM `site_noticias` WHERE slug = ? AND categoria_id = ?");
+    $post->execute(array($url[2],$categoria_info['id']));
+    
+    if ($post->rowCount() === 0) {
+      Painel::redirect(INCLUDE_PATH.'/noticias');
+    } else {
+      $post = $post->fetch();
+    }
+  }
+?>
+
 <section class="noticia-single">
   <article>
     <header>
-      <span class="bread-crumb"><a href="<?php echo INCLUDE_PATH ?>/noticias/nome-categoria">Categoria</a> > Título da Notícia</span>
-      <h1>Título da Notícia</h1>
+      <span class="bread-crumb"><a href="<?php echo INCLUDE_PATH ?>/noticias/nome-categoria">Categoria</a> > <?php echo $post['titulo']; ?></span>
+      <h1><?php echo $post['titulo']; ?></h1>
+      <span><?php echo $post['data']; ?></span>
     </header>
-    <h2>Título em h2</h2>
-    <h3>Título em h3</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae dicta, commodi sit vero doloribus laborum corporis voluptate explicabo labore atque est suscipit rerum. Aspernatur nostrum eveniet dicta cupiditate magnam explicabo, ab repellat illo error eligendi accusamus earum optio, similique excepturi?</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus quisquam quibusdam ad dolores quidem molestiae perferendis odio obcaecati cumque rerum saepe, sit ex officiis voluptas error esse voluptate aspernatur optio corrupti sint tenetur adipisci! Explicabo neque minima, possimus, consectetur saepe natus illo eaque voluptatum a totam maiores quidem cupiditate! Dolor maiores nulla magni quas labore perspiciatis cupiditate odio, doloribus fugiat.</p>
-    <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
-      <li>Item 3</li>
-    </ul>
-    <img src="<?php echo INCLUDE_PATH; ?>/assets/hero-bg-1.jpg" alt="">
+    <?php echo $post['conteudo']; ?>
   </article>
 </section>

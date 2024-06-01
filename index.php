@@ -72,5 +72,18 @@
 
   <script src="<?php echo INCLUDE_PATH; ?>/js/jquery-3.7.1.min.js"></script>
   <script src="<?php echo INCLUDE_PATH; ?>/js/index.js"></script>
+
+  <?php
+    if(is_array($url) && strstr($url[0],'noticias')) {
+  ?>
+    <script>
+      const base = 'http://localhost/desenv_web/site_dinamico/'
+      $(function() {
+        $('select').change(function() {
+          location.href=base+'noticias/'+$(this).val();
+        })
+      })
+    </script>
+  <?php }?>
 </body>
 </html>

@@ -31,6 +31,7 @@
               $slug = Painel::generateSlug($nome);
               $arr = [
                 'categoria_id'=>$_POST['categoria_id'],
+                'data' => date('Y-m-d'),
                 'titulo'=>$nome,
                 'conteudo'=>$conteudo,
                 'capa'=>$imagem,
@@ -87,7 +88,7 @@
 
     <div class="form-group">
       <label for="conteudo">Conteúdo da Notícia:</label>
-      <textarea type="text" name="conteudo" required>
+      <textarea class="tinymce" type="text" name="conteudo" required>
         <?php echo $noticia['conteudo']; ?>
       </textarea>
     </div>

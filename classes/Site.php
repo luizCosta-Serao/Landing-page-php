@@ -11,7 +11,13 @@
           $sql = MySql::conectar()->prepare("UPDATE `usuarios_online` SET ultima_acao = ? WHERE token = ?");
           $sql->execute(array($horarioAtual,$token));
         } else {
-          $ip = $_SERVER['REMOTE_ADDR'];
+          if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+          } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+          } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+          }
           $token = $_SESSION['online'];
           $horarioAtual = date('Y-m-d H:i:s');
           $sql = MySql::conectar()->prepare("INSERT INTO `usuarios_online` VALUES (null,?,?,?)");
@@ -19,7 +25,13 @@
         }
       } else {
         $_SESSION['online'] = uniqid();
-        $ip = $_SERVER['REMOTE_ADDR'];
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+          $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+          $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+          $ip = $_SERVER['REMOTE_ADDR'];
+        }
         $token = $_SESSION['online'];
         $horarioAtual = date('Y-m-d H:i:s');
         $sql = MySql::conectar()->prepare("INSERT INTO `usuarios_online` VALUES (null,?,?,?)");

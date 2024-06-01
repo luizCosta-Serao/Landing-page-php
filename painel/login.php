@@ -13,7 +13,7 @@
       $_SESSION['nome'] = $info['nome'];
       $_SESSION['img'] = $info['img'];
 
-      header('Location: '.INCLUDE_PATH_PAINEL);
+      Painel::redirect(INCLUDE_PATH_PAINEL);
       die();
     }
   }
@@ -51,7 +51,7 @@
             setcookie('user',$user,time()+(60*60*24),'/');
             setcookie('password',$password,time()+(60*60*24),'/');
           }
-          header('Location: '.INCLUDE_PATH_PAINEL);
+          Painel::redirect(INCLUDE_PATH_PAINEL);
           die();
         } else {
           echo '<div class="error-box">Usuário ou Senha incorretos</div>';

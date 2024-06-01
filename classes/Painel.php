@@ -269,13 +269,14 @@
   
       $titulo = $arr['titulo'];
       $conteudo = $arr['conteudo'];
+      $data = $arr['data'];
       $capa = $arr['capa'];
       $slug = $arr['slug'];
       $id = $arr['id'];
       $categoria_id = $arr['categoria_id'];
       
-      $sql = MySql::conectar()->prepare("UPDATE `$nome_tabela` SET categoria_id = ?, titulo = ?, conteudo = ?, capa = ? , slug = ? WHERE id = ?");
-      $sql->execute(array($categoria_id,$titulo,$conteudo,$capa,$slug,$id));
+      $sql = MySql::conectar()->prepare("UPDATE `$nome_tabela` SET categoria_id = ?, data = ? ,titulo = ?, conteudo = ?, capa = ? , slug = ? WHERE id = ?");
+      $sql->execute(array($categoria_id,$data,$titulo,$conteudo,$capa,$slug,$id));
   
       return $certo;
     }
